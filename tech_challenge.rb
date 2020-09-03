@@ -1,3 +1,4 @@
+# ORIGINAL SUBMISSION AT 10:33
 # def snail(array)
 #   iterations = (array.length / 2.0).ceil
 
