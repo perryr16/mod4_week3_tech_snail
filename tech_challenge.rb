@@ -1,34 +1,77 @@
+# def snail(array)
+#   iterations = (array.length / 2.0).ceil
+
+#   result = []
+#   iterations.times do |index|
+
+#     result << array[0]
+#     array.delete_at(0)
+
+#     array.each_with_index do |array_element, index|
+#       result << array_element[-1]
+#       array[index].delete_at(-1)
+#     end
+
+#     if array.empty? 
+#       return result
+#     end
+#     result << array[-1].reverse
+#     array.delete_at(-1)
+    
+#     array.reverse.each_with_index do |array_element, index|
+#       result << array_element[0]
+#       if array.length == 1 && array[0].length == 1
+#         array[0].delete_at(0)
+#       else
+#         array[-(index+1)].delete_at(0)
+#       end
+#     end
+#   end
+#   result
+# end
+
 def snail(array)
   iterations = (array.length / 2.0).ceil
-
   result = []
   iterations.times do |index|
-    result << array[0]
-    array.delete_at(0)
-
-    array.each_with_index do |array_element, index|
-      result << array_element[-1]
-      array[index].delete_at(-1)
-    end
-
-    if array.empty? 
-      return result
-    end
-    result << array[-1].reverse
-    array.delete_at(-1)
-    
-    array.reverse.each_with_index do |array_element, index|
-      result << array_element[0]
-      if array.length == 1 && array[0].length == 1
-        array[0].delete_at(0)
-      else
-        array[-(index+1)].delete_at(0)
-      end
-    end
+    top(array, result)
+    right(array, result)
+    bottom(array, result)
+    left(array, result)
   end
   result
 end
 
+def top(array, result)
+  result << array[0]
+  array.delete_at(0)
+end
+
+def right(array, result)
+    array.each_with_index do |array_element, index|
+    result << array_element[-1]
+    array[index].delete_at(-1)
+  end
+end
+
+def bottom(array, result)
+  if array.empty? 
+    return result
+  end
+  result << array[-1].reverse
+  array.delete_at(-1)
+end
+
+def left(array, result)
+    array.reverse.each_with_index do |array_element, index|
+    result << array_element[0]
+    if array.length == 1 && array[0].length == 1
+      array[0].delete_at(0)
+    else
+      array[-(index+1)].delete_at(0)
+    end
+  end
+end
 
 x1_x_1 = [1]
 x2_x_2 = [[1,2],[3,4]]
