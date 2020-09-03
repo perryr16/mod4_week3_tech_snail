@@ -6,9 +6,6 @@ def snail(array)
     result << array[0]
     array.delete_at(0)
 
-    if array.empty? 
-      return result
-    end
     array.each_with_index do |array_element, index|
       result << array_element[-1]
       array[index].delete_at(-1)
@@ -20,9 +17,6 @@ def snail(array)
     result << array[-1].reverse
     array.delete_at(-1)
     
-    if array.empty? 
-      return result
-    end
     array.reverse.each_with_index do |array_element, index|
       result << array_element[0]
       if array.length == 1 && array[0].length == 1
